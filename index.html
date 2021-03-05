@@ -12,22 +12,34 @@
         }
 
         function playRound(playerSelection, computerSelection){
-            if(playerSelection === "Rock") { playerSelection = 0; }
-            else if(playerSelection === "Paper"){ playerSelection = 1; }
-            else playerSelection = 2;
 
-            if (((playerSelection + 1) % 3) === computerSelection) {
-                return "Computer wins round";
+            //0: Rock
+            //1: Paper
+            //2: Scissors
+
+            playerSelection = playerSelection.toLowerCase();
+
+            if(playerSelection === "rock") { playerScore = 0; }
+            else if(playerSelection === "paper"){ playerScore = 1; }
+            else playerScore = 2;
+
+            if(computerSelection === 0) { computerChoice = "rock"; }
+            else if(computerSelection === 1){ computerChoice = "paper"; }
+            else computerChoice = "scissors";
+
+            if (((playerScore + 1) % 3) === computerSelection) {
+
+                return "You lose! " + computerChoice + " beats " + playerSelection;
             }
-            else if(playerSelection === computerSelection) {
+            else if(playerScore === computerSelection) {
                 return "Round is tied";
             }
             else{
-                return "player wins round";
+                return "You win! " + playerSelection + " beats " + computerChoice;
             }
         }
 
-        const playerSelection = "Rock";
+        const playerSelection = "Scissors";
         const computerSelection = computerPlay();
 
         console.log(playRound(playerSelection, computerSelection));
